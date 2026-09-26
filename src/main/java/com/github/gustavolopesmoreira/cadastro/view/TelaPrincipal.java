@@ -17,6 +17,7 @@ public class TelaPrincipal {
 
             int idade = Integer.parseInt(idadeString);
 
+            // Agora funciona, pois criamos o construtor Usuario(nome, idade)
             Usuario novoUsuario = new Usuario(nome, idade);
 
             UsuarioDAO dao = new UsuarioDAO();
@@ -27,12 +28,15 @@ public class TelaPrincipal {
                     "Sucesso",
                     JOptionPane.INFORMATION_MESSAGE);
 
-        } catch (IllegalArgumentException e) {
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao processar a idade. Digite apenas números.", "Erro", JOptionPane.ERROR_MESSAGE);
 
+        } catch (IllegalArgumentException e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Dados Inválidos", JOptionPane.WARNING_MESSAGE);
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao processar a idade. Digite apenas números.", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Erro no sistema:\n" + e.getMessage(), "Erro Crítico", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
         }
     }
 }
