@@ -11,7 +11,15 @@ public class Usuario {
 
     public Usuario() {}
 
+    // NOVO: Construtor para criar usuário sem passar ID (o UUID é gerado automaticamente)
     public Usuario(String nome, int idade) {
+        setNome(nome);
+        setIdade(idade);
+    }
+
+    // Construtor completo (usado pelo DAO ao buscar do banco)
+    public Usuario(String id, String nome, int idade) {
+        this.id = id;
         setNome(nome);
         setIdade(idade);
     }
